@@ -1,29 +1,27 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>GODOY Bookings</title>
+  <meta charset="UTF-8" />
+  <title>Godoy Bookings</title>
   <style>
     html, body {
       margin: 0;
+      padding: 0;
       height: 100%;
       font-family: Arial, sans-serif;
-    }
-    iframe {
-      width: 100%;
-      height: 100vh;
-      border: none;
     }
     .topbar {
       position: fixed;
       top: 0;
       width: 100%;
+      height: 50px;
       background-color: #3a6ea5;
       color: white;
-      padding: 10px 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      padding: 0 20px;
+      box-sizing: border-box;
       z-index: 999;
     }
     .topbar a {
@@ -36,11 +34,16 @@
       margin-top: 50px;
       height: calc(100vh - 50px);
     }
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
   </style>
 </head>
 <body>
   <div class="topbar">
-    <div><strong>🏠 Godoy Bookings</strong></div>
+    <div>🏠 GODOY Bookings</div>
     <div>
       <a href="#menu">Menú</a>
       <a href="#gastos">Gastos</a>
@@ -55,16 +58,16 @@
 
   <script>
     const iframe = document.getElementById("webappFrame");
+    const baseUrl = "https://script.google.com/macros/s/AKfycbwYq8spf4dKFPES0d7CK87gIw6e6fZLiDjgquQd6y9NyaBFRr8I6Qq6vZM2VGGsbvmvAw/exec";
 
-    function updateIframe() {
-      const base = "https://script.google.com/macros/s/AKfycbwYq8spf4dKFPES0d7CK87gIw6e6fZLiDjgquQd6y9NyaBFRr8I6Qq6vZM2VGGsbvmvAw/exec";
-      const hash = window.location.hash.replace('#', '');
-      const url = hash ? `${base}?page=${hash}` : base;
-      iframe.src = url;
+    function loadPageFromHash() {
+      const hash = window.location.hash.replace("#", "").toLowerCase();
+      const page = hash ? `?page=${hash}` : "";
+      iframe.src = baseUrl + page;
     }
 
-    window.addEventListener("hashchange", updateIframe);
-    window.addEventListener("load", updateIframe);
+    window.addEventListener("load", loadPageFromHash);
+    window.addEventListener("hashchange", loadPageFromHash);
   </script>
 </body>
 </html>
