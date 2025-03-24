@@ -1,38 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <title>Godoy Bookings</title>
+  <meta charset="UTF-8">
+  <title>GODOY Bookings</title>
   <style>
     html, body {
       margin: 0;
-      padding: 0;
       height: 100%;
-      font-family: Arial, sans-serif;
-    }
-    .topbar {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      height: 50px;
-      background-color: #3a6ea5;
-      color: white;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0 20px;
-      box-sizing: border-box;
-      z-index: 999;
-    }
-    .topbar a {
-      color: white;
-      text-decoration: none;
-      margin-left: 15px;
-      font-weight: bold;
-    }
-    .iframe-container {
-      margin-top: 50px;
-      height: calc(100vh - 50px);
+      overflow: hidden;
     }
     iframe {
       width: 100%;
@@ -42,32 +17,7 @@
   </style>
 </head>
 <body>
-  <div class="topbar">
-    <div>🏠 GODOY Bookings</div>
-    <div>
-      <a href="#menu">Menú</a>
-      <a href="#gastos">Gastos</a>
-      <a href="#calendario">Calendario</a>
-      <a href="#index">Inicio</a>
-    </div>
-  </div>
-
-  <div class="iframe-container">
-    <iframe id="webappFrame" src=""></iframe>
-  </div>
-
-  <script>
-    const iframe = document.getElementById("webappFrame");
-    const baseUrl = "https://script.google.com/macros/s/AKfycbwYq8spf4dKFPES0d7CK87gIw6e6fZLiDjgquQd6y9NyaBFRr8I6Qq6vZM2VGGsbvmvAw/exec";
-
-    function loadPageFromHash() {
-      const hash = window.location.hash.replace("#", "").toLowerCase();
-      const page = hash ? `?page=${hash}` : "";
-      iframe.src = baseUrl + page;
-    }
-
-    window.addEventListener("load", loadPageFromHash);
-    window.addEventListener("hashchange", loadPageFromHash);
-  </script>
+  <!-- Cambiá el ID por el de tu Web App si cambia -->
+  <iframe src="https://script.google.com/macros/s/AKfycbwYq8spf4dKFPES0d7CK87gIw6e6fZLiDjgquQd6y9NyaBFRr8I6Qq6vZM2VGGsbvmvAw/exec" allowfullscreen></iframe>
 </body>
 </html>
