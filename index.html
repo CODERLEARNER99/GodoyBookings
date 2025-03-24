@@ -14,9 +14,57 @@
       height: 100vh;
       border: none;
     }
+    .topbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: #3a6ea5;
+      color: white;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 999;
+    }
+    .topbar a {
+      color: white;
+      text-decoration: none;
+      margin-left: 15px;
+      font-weight: bold;
+    }
+    .iframe-container {
+      margin-top: 50px;
+      height: calc(100vh - 50px);
+    }
   </style>
 </head>
 <body>
-  <iframe src="https://script.google.com/macros/s/AKfycbwYq8spf4dKFPES0d7CK87gIw6e6fZLiDjgquQd6y9NyaBFRr8I6Qq6vZM2VGGsbvmvAw/exec" allowfullscreen></iframe>
+  <div class="topbar">
+    <div><strong>🏠 Godoy Bookings</strong></div>
+    <div>
+      <a href="#menu">Menú</a>
+      <a href="#gastos">Gastos</a>
+      <a href="#calendario">Calendario</a>
+      <a href="#index">Inicio</a>
+    </div>
+  </div>
+
+  <div class="iframe-container">
+    <iframe id="webappFrame" src=""></iframe>
+  </div>
+
+  <script>
+    const iframe = document.getElementById("webappFrame");
+
+    function updateIframe() {
+      const base = "https://script.google.com/macros/s/AKfycbwYq8spf4dKFPES0d7CK87gIw6e6fZLiDjgquQd6y9NyaBFRr8I6Qq6vZM2VGGsbvmvAw/exec";
+      const hash = window.location.hash.replace('#', '');
+      const url = hash ? `${base}?page=${hash}` : base;
+      iframe.src = url;
+    }
+
+    window.addEventListener("hashchange", updateIframe);
+    window.addEventListener("load", updateIframe);
+  </script>
 </body>
 </html>
